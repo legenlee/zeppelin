@@ -29,7 +29,8 @@
 import './index.css';
 import { createApp } from 'vue';
 import { vuetify } from './plugins/vuetify';
+import { pinia } from './plugins/pinia';
 
 import App from './App.vue';
 
-createApp(App).use(vuetify).mount('#app');
+createApp(App).use(pinia).use(vuetify).mount('#app');
