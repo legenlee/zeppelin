@@ -26,7 +26,6 @@
  * ```
  */
 
-import './index.css';
 import { createApp } from 'vue';
 import { router } from './plugins/router';
 import { vuetify } from './plugins/vuetify';
