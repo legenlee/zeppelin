@@ -28,9 +28,11 @@
 
 import './index.css';
 import { createApp } from 'vue';
+import { router } from './plugins/router';
 import { vuetify } from './plugins/vuetify';
 import { pinia } from './plugins/pinia';
 
 import App from './App.vue';
+import { vueI18n } from './plugins/vueI18n';
 
-createApp(App).use(pinia).use(vuetify).mount('#app');
+createApp(App).use(router).use(pinia).use(vuetify).use(vueI18n).mount('#app');
