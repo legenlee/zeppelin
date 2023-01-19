@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import UserAvatar from '../../domains/user/UserAvatar.vue';
+import { mdiPlayCircle } from '@mdi/js';
 </script>
 
 <template>
@@ -39,7 +40,24 @@ import UserAvatar from '../../domains/user/UserAvatar.vue';
       <v-container>
         <v-row>
           <v-col>
-            <v-btn size="x-large" color="primary" flat>Play</v-btn>
+            <div class="d-flex align-center">
+              <div class="mr-8">
+                <v-btn
+                  :prepend-icon="mdiPlayCircle"
+                  size="x-large"
+                  color="primary"
+                  flat
+                >
+                  Play
+                </v-btn>
+              </div>
+              <div>
+                <h2 class="text-h5">Item 2</h2>
+                <h3 class="text-subtitle-2">
+                  Minecraft 1.16.5, Modded with Fabric (0.22.12)
+                </h3>
+              </div>
+            </div>
           </v-col>
         </v-row>
       </v-container>
