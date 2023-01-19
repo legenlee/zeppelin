@@ -8,10 +8,19 @@
       </v-btn>
     </template>
 
-    <v-list>
-      <v-list-item @click="() => {}">
-        <v-list-item-title>Logout</v-list-item-title>
-      </v-list-item>
-    </v-list>
+    <v-card>
+      <v-card-text>
+        <div class="mx-auto text-center">
+          <v-avatar rounded="lg" color="primary"></v-avatar>
+          <h3>User</h3>
+          <p class="text-caption mt-1">User@example.com</p>
+
+          <v-divider class="my-3"></v-divider>
+          <v-btn rounded variant="text">Edit Account</v-btn>
+          <v-divider class="my-3"></v-divider>
+          <v-btn rounded variant="text">Logout</v-btn>
+        </div>
+      </v-card-text>
+    </v-card>
   </v-menu>
 </template>

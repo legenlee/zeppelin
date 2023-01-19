@@ -8,14 +8,11 @@ const routes: RouteRecordRaw[] = [
     redirect: {
       name: Routes.PROFILES,
     },
-    component: () => import('../layouts/MainLayout.vue'),
-    children: [
-      {
-        name: Routes.PROFILES,
-        path: 'profiles',
-        component: () => import('../screens/profiles/ProfilesScreen.vue'),
-      },
-    ],
+  },
+  {
+    name: Routes.PROFILES,
+    path: '/profiles/::profileId(\\d+)?',
+    component: import('../screens/profiles/ProfilesScreen.vue'),
   },
 ];
 
