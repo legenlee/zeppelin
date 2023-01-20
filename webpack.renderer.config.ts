@@ -4,6 +4,7 @@ import { rules } from './webpack.rules';
 import { plugins } from './webpack.plugins';
 
 import { VueLoaderPlugin } from 'vue-loader';
+import path from 'path';
 
 rules.push({
   test: /\.css$/,
@@ -26,6 +27,9 @@ export const rendererConfig: Configuration = {
   },
   plugins: [...plugins, new VueLoaderPlugin()],
   resolve: {
+    alias: {
+      core: path.resolve(__dirname, './src/core'),
+    },
     extensions: ['.js', '.ts', '.jsx', '.tsx', '.css'],
   },
 };

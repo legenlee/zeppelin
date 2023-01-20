@@ -1,6 +1,34 @@
 <script setup lang="ts">
-import UserAvatar from '../../domains/user/UserAvatar.vue';
 import { mdiPlayCircle } from '@mdi/js';
+import UserAvatar from '../../domains/user/UserAvatar.vue';
+import ProfileListItem from '../../domains/profile/ProfileListItem.vue';
+import { ModdedPlatform } from 'core/mod/moddedPlatform';
+
+const profiles = [
+  {
+    id: 1,
+    name: 'Profile 1',
+    version: '1.19.3',
+  },
+  {
+    id: 2,
+    name: 'Profile 2',
+    version: '1.12.2',
+    modded: ModdedPlatform.FORGE,
+  },
+  {
+    id: 3,
+    name: 'Profile 2',
+    version: '1.19.2',
+    modded: ModdedPlatform.QUILT,
+  },
+  {
+    id: 4,
+    name: 'Profile 3',
+    version: '1.16.5',
+    modded: ModdedPlatform.FABRIC,
+  },
+];
 </script>
 
 <template>
@@ -19,20 +47,13 @@ import { mdiPlayCircle } from '@mdi/js';
 
     <v-navigation-drawer permanent>
       <v-list density="compact">
-        <v-list-item @click="() => {}">
-          <v-list-item-title> Item 1 </v-list-item-title>
-          <v-list-item-subtitle>1.19.3</v-list-item-subtitle>
-        </v-list-item>
-
-        <v-list-item @click="() => {}">
-          <v-list-item-title> Item 2 </v-list-item-title>
-          <v-list-item-subtitle>1.16.5 | Modded (Fabric)</v-list-item-subtitle>
-        </v-list-item>
-
-        <v-list-item @click="() => {}">
-          <v-list-item-title> Item 3 </v-list-item-title>
-          <v-list-item-subtitle>1.12.2 | Modded (Forge)</v-list-item-subtitle>
-        </v-list-item>
+        <profile-list-item
+          v-for="profile in profiles"
+          :key="profile.id"
+          :name="profile.name"
+          :version="profile.version"
+          :modded="profile.modded"
+        ></profile-list-item>
       </v-list>
     </v-navigation-drawer>
 
