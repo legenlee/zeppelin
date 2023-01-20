@@ -32,45 +32,45 @@ const profiles = [
 </script>
 
 <template>
-  <v-layout>
-    <v-app-bar>
-      <v-btn rounded>Create Profile</v-btn>
-      <v-divider class="mx-2" vertical></v-divider>
-      <v-btn rounded>Buy me a coffee</v-btn>
-      <v-divider class="mx-2" vertical></v-divider>
-      <v-btn rounded>Settings</v-btn>
-      <v-divider class="ml-2" vertical></v-divider>
+  <VLayout>
+    <VAppBar>
+      <VBtn rounded>Create Profile</VBtn>
+      <VDivider class="mx-2" vertical></VDivider>
+      <VBtn rounded>Buy me a coffee</VBtn>
+      <VDivider class="mx-2" vertical></VDivider>
+      <VBtn rounded>Settings</VBtn>
+      <VDivider class="ml-2" vertical></VDivider>
 
-      <v-spacer></v-spacer>
-      <user-avatar></user-avatar>
-    </v-app-bar>
+      <VSpacer></VSpacer>
+      <UserAvatar></UserAvatar>
+    </VAppBar>
 
-    <v-navigation-drawer permanent>
-      <v-list density="compact">
-        <profile-list-item
+    <VNavigationDrawer permanent>
+      <VList density="compact">
+        <ProfileListItem
           v-for="profile in profiles"
           :key="profile.id"
           :name="profile.name"
           :version="profile.version"
           :modded="profile.modded"
-        ></profile-list-item>
-      </v-list>
-    </v-navigation-drawer>
+        ></ProfileListItem>
+      </VList>
+    </VNavigationDrawer>
 
-    <v-main>
-      <v-container>
-        <v-row>
-          <v-col>
+    <VMain>
+      <VContainer>
+        <VRow>
+          <VCol>
             <div class="d-flex align-center">
               <div class="mr-8">
-                <v-btn
+                <VBtn
                   :prepend-icon="mdiPlayCircle"
                   size="x-large"
                   color="primary"
                   flat
                 >
                   Play
-                </v-btn>
+                </VBtn>
               </div>
               <div>
                 <h2 class="text-h5">Item 2</h2>
@@ -79,9 +79,9 @@ const profiles = [
                 </h3>
               </div>
             </div>
-          </v-col>
-        </v-row>
-      </v-container>
-    </v-main>
-  </v-layout>
+          </VCol>
+        </VRow>
+      </VContainer>
+    </VMain>
+  </VLayout>
 </template>

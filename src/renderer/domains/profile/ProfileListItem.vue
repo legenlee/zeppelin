@@ -18,8 +18,8 @@ const versionSummary = computed(() =>
 </script>
 
 <template>
-  <v-list-item @click="() => {}">
-    <v-list-item-title>{{ props.name }}</v-list-item-title>
-    <v-list-item-subtitle> {{ versionSummary }}</v-list-item-subtitle>
-  </v-list-item>
+  <VListItem @click="() => {}">
+    <VListItemTitle>{{ props.name }}</VListItemTitle>
+    <VListItemSubtitle> {{ versionSummary }}</VListItemSubtitle>
+  </VListItem>
 </template>

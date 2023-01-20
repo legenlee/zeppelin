@@ -1,3 +1,3 @@
 <template>
-  <v-layout> </v-layout>
+  <VLayout> </VLayout>
 </template>

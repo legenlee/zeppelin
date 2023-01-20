@@ -1,5 +1,5 @@
 <template>
-  <v-app>
-    <router-view></router-view>
-  </v-app>
+  <VApp>
+    <RouterView></RouterView>
+  </VApp>
 </template>
