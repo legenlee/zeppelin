@@ -2,6 +2,7 @@
 import { mdiPlayCircle } from '@mdi/js';
 import UserAvatar from '../../domains/user/UserAvatar.vue';
 import ProfileListItem from '../../domains/profile/ProfileListItem.vue';
+import { Routes } from '../../plugins/router/routes';
 import { ModdedPlatform } from 'core/mod/moddedPlatform';
 
 const profiles = [
@@ -38,7 +39,7 @@ const profiles = [
       <VDivider class="mx-2" vertical></VDivider>
       <VBtn rounded>Buy me a coffee</VBtn>
       <VDivider class="mx-2" vertical></VDivider>
-      <VBtn rounded>Settings</VBtn>
+      <VBtn rounded :to="{ name: Routes.SETTINGS }">Settings</VBtn>
       <VDivider class="ml-2" vertical></VDivider>
 
       <VSpacer></VSpacer>
@@ -75,7 +76,7 @@ const profiles = [
               <div>
                 <h2 class="text-h5">Item 2</h2>
                 <h3 class="text-subtitle-2">
-                  Minecraft 1.16.5, Modded with Fabric (0.22.12)
+                  1.16.5, Modded with Fabric (0.22.12)
                 </h3>
               </div>
             </div>

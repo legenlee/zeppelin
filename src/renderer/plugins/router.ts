@@ -12,7 +12,23 @@ const routes: RouteRecordRaw[] = [
   {
     name: Routes.PROFILES,
     path: '/profiles/::profileId(\\d+)?',
-    component: import('../screens/profiles/ProfilesScreen.vue'),
+    component: () => import('../screens/profiles/ProfilesScreen.vue'),
+  },
+  {
+    name: Routes.SETTINGS,
+    path: '/settings',
+    component: () => import('../screens/settings/SettingsScreen.vue'),
+    redirect: {
+      name: Routes.GENERAL_SETTING,
+    },
+    children: [
+      {
+        name: Routes.GENERAL_SETTING,
+        path: 'general',
+        component: () =>
+          import('../screens/settings/general/GeneralSettingScreen.vue'),
+      },
+    ],
   },
 ];
 
@@ -21,4 +37,4 @@ const router = createRouter({
   routes,
 });
 
-export { router };
+export { router, routes };

@@ -1,3 +1,0 @@
-<template>
-  <VLayout> </VLayout>
-</template>
