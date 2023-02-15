@@ -1,4 +1,4 @@
-export enum VersionTypes {
+export enum VersionType {
   RELEASE = 'release',
   SNAPSHOT = 'snapshot',
   BETA = 'old_beta',
