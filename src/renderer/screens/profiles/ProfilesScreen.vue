@@ -3,7 +3,7 @@ import { mdiPlayCircle } from '@mdi/js';
 import UserAvatar from '../../domains/user/UserAvatar.vue';
 import ProfileListItem from '../../domains/profile/ProfileListItem.vue';
 import { Routes } from '../../plugins/router/routes';
-import { ModdedPlatform } from 'core/mod/moddedPlatform';
+import { ModPlatforms } from 'core/enums/modPlatforms';
 
 const profiles = [
   {
@@ -15,19 +15,19 @@ const profiles = [
     id: 2,
     name: 'Profile 2',
     version: '1.12.2',
-    modded: ModdedPlatform.FORGE,
+    modded: ModPlatforms.FORGE,
   },
   {
     id: 3,
     name: 'Profile 2',
     version: '1.19.2',
-    modded: ModdedPlatform.QUILT,
+    modded: ModPlatforms.QUILT,
   },
   {
     id: 4,
     name: 'Profile 3',
     version: '1.16.5',
-    modded: ModdedPlatform.FABRIC,
+    modded: ModPlatforms.FABRIC,
   },
 ];
 </script>
@@ -63,14 +63,9 @@ const profiles = [
         <VRow>
           <VCol>
             <div class="d-flex align-center">
-              <div class="mr-8">
-                <VBtn
-                  :prepend-icon="mdiPlayCircle"
-                  size="x-large"
-                  color="primary"
-                  flat
-                >
-                  Play
+              <div class="mr-4">
+                <VBtn size="x-large" icon flat>
+                  <VIcon :icon="mdiPlayCircle" color="primary"></VIcon>
                 </VBtn>
               </div>
               <div>

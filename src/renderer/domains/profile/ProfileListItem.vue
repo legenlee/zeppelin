@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { ModdedPlatform } from 'core/mod/moddedPlatform';
+import { ModPlatforms } from 'core/enums/modPlatforms';
 import { computed } from 'vue';
 
 interface Props {
   name: string;
   version: string;
-  modded?: ModdedPlatform;
+  modded?: ModPlatforms;
 }
 
 const props = defineProps<Props>();
