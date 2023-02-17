@@ -22,7 +22,6 @@ export class Client {
     const controller = new AbortController();
     const init: RequestInit = {
       ...options,
-      mode: 'cors',
       signal: controller.signal,
     };
 
@@ -34,7 +33,7 @@ export class Client {
       controller.abort();
     }, 1000 * 30);
 
-    return fetch(input, init)
+    return fetch(input.toString(), init)
       .then((value) => {
         this._connectionState = value.ok
           ? ConnectionState.COMPLETED
@@ -55,7 +54,9 @@ export class Client {
     options?: RequestInit
   ) {
     return this.fetch<T>(path, params, {
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+      },
       method: 'GET',
       ...options,
     });
@@ -67,7 +68,9 @@ export class Client {
     options?: RequestInit
   ) {
     return this.fetch<T>(path, params, {
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+      },
       method: 'POST',
       ...options,
     });
@@ -79,7 +82,9 @@ export class Client {
     options?: RequestInit
   ) {
     return this.fetch<T>(path, params, {
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+      },
       method: 'PUT',
       ...options,
     });
@@ -91,7 +96,9 @@ export class Client {
     options?: RequestInit
   ) {
     return this.fetch<T>(path, params, {
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+      },
       method: 'DELETE',
       ...options,
     });

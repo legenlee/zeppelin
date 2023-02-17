@@ -1,4 +1,4 @@
-import { Client } from 'core/common/client';
+import { Client } from '../common/client';
 import { Manifest } from './dto/manifest';
 
 export class Games {

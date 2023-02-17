@@ -1,11 +1,9 @@
 <script setup lang="ts">
-import { onMounted } from 'vue';
 import { mdiPlayCircle } from '@mdi/js';
 import UserAvatar from '../../domains/user/UserAvatar.vue';
 import ProfileListItem from '../../domains/profile/ProfileListItem.vue';
 import { Routes } from '../../plugins/router/routes';
 import { ModPlatform } from 'core/enums/modPlatform';
-import { Games } from 'core/api/games';
 
 const profiles = [
   {
@@ -32,10 +30,6 @@ const profiles = [
     modded: ModPlatform.FABRIC,
   },
 ];
-
-onMounted(async () => {
-  console.log(await Games.getAvailableVersions());
-});
 </script>
 
 <template>
