@@ -10,12 +10,14 @@ export class Version {
     //
   }
 
-  public async getMinecraftVersions() {}
+  public async getMinecraftVersions() {
+    return await Games.getAvailableVersions();
+  }
 
   public static bootstrap(): void {
     const instance = new Version();
 
-    ipcMain.on(
+    ipcMain.handle(
       VersionChannelName.GET_MINECRAFT_VERSIONS,
       instance.getMinecraftVersions
     );

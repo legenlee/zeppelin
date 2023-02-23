@@ -1,3 +1,4 @@
+import https from 'https';
 import { ConnectionState } from 'core/enums/connectionState';
 
 export class Client {
@@ -8,52 +9,59 @@ export class Client {
     this._baseURL = typeof url === 'string' ? new URL(url) : url;
   }
 
-  public fetch<T>(
-    path?: string,
-    body?: Record<string, unknown>,
-    options?: RequestInit
+  private promisifiedRequest<T>(
+    url: URL,
+    data?: Record<string, unknown>,
+    options?: https.RequestOptions
   ) {
-    const input = new URL(this._baseURL);
+    return new Promise<T>((resolve, reject) => {
+      const chunks: Uint8Array[] = [];
+      const request = https.request(
+        url,
+        {
+          ...options,
+        },
+        (response) => {
+          response.on('data', (chunk) => {
+            chunks.push(chunk);
+          });
 
-    if (path != null) {
-      input.pathname = path;
-    }
+          response.on('error', (err) => {
+            this._connectionState = ConnectionState.ERROR;
+            reject(err);
+          });
 
-    const controller = new AbortController();
-    const init: RequestInit = {
-      ...options,
-      signal: controller.signal,
-    };
+          response.on('end', () => {
+            const data = JSON.parse(Buffer.concat(chunks).toString('utf-8'));
+            this._connectionState = ConnectionState.COMPLETED;
+            resolve(data);
+          });
+        }
+      );
 
-    if (body != null) {
-      init.body = JSON.stringify(body);
-    }
+      if (data != null) {
+        request.write(data);
+      }
 
-    const timeoutEvent = setTimeout(() => {
-      controller.abort();
-    }, 1000 * 30);
+      request.end();
+    });
+  }
 
-    return fetch(input.toString(), init)
-      .then((value) => {
-        this._connectionState = value.ok
-          ? ConnectionState.COMPLETED
-          : ConnectionState.ERROR;
-        return value.json() as Promise<T>;
-      })
-      .catch(() => {
-        this._connectionState = ConnectionState.ERROR;
-      })
-      .finally(() => {
-        clearTimeout(timeoutEvent);
-      });
+  public async request<T>(
+    path?: string,
+    data?: Record<string, unknown>,
+    options?: https.RequestOptions
+  ) {
+    const url = path != null ? new URL(path, this._baseURL) : this._baseURL;
+    return await this.promisifiedRequest<T>(url, data, options);
   }
 
   public get<T>(
     path?: string,
     params?: Record<string, unknown>,
-    options?: RequestInit
+    options?: https.RequestOptions
   ) {
-    return this.fetch<T>(path, params, {
+    return this.request<T>(path, params, {
       headers: {
         'Content-Type': 'application/json',
       },
@@ -65,9 +73,9 @@ export class Client {
   public post<T>(
     path?: string,
     params?: Record<string, unknown>,
-    options?: RequestInit
+    options?: https.RequestOptions
   ) {
-    return this.fetch<T>(path, params, {
+    return this.request<T>(path, params, {
       headers: {
         'Content-Type': 'application/json',
       },
@@ -79,9 +87,9 @@ export class Client {
   public put<T>(
     path?: string,
     params?: Record<string, unknown>,
-    options?: RequestInit
+    options?: https.RequestOptions
   ) {
-    return this.fetch<T>(path, params, {
+    return this.request<T>(path, params, {
       headers: {
         'Content-Type': 'application/json',
       },
@@ -93,9 +101,9 @@ export class Client {
   public delete<T>(
     path?: string,
     params?: Record<string, unknown>,
-    options?: RequestInit
+    options?: https.RequestOptions
   ) {
-    return this.fetch<T>(path, params, {
+    return this.request<T>(path, params, {
       headers: {
         'Content-Type': 'application/json',
       },
