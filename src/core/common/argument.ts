@@ -1,5 +1,5 @@
-export class Argument<T> {
-  private constructor(
+export class Argument<T = string> {
+  public constructor(
     private _name: string,
     private _value: T,
     private _prefix = '--'
@@ -29,9 +29,5 @@ export class Argument<T> {
 
   public toString(equalize = false) {
     return `${this._prefix}${this._name}${equalize ? '=' : ' '}${this._value}`;
-  }
-
-  public static create<T = boolean>(name: string, value?: T) {
-    return new Argument<T>(name, value);
   }
 }
