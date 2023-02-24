@@ -9,4 +9,12 @@ export class Games {
 
     return client.get<Manifest>();
   }
+
+  public static downloadLibraies(name: string) {
+    const client = new Client('https://libraries.minecraft.net');
+  }
+
+  public static downloadAssets(hash: string) {
+    const client = new Client('https://resources.download.minecraft.net');
+  }
 }
