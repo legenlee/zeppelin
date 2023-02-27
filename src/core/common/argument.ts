@@ -1,9 +1,15 @@
 export class Argument<T = string> {
-  public constructor(
-    private _name: string,
-    private _value: T,
-    private _prefix = '--'
-  ) {}
+  private _name: string;
+  private _value: T;
+  private _prefix = '--';
+  private _hidden: boolean;
+
+  public constructor(name: string, value: T, prefix = '--', hidden = false) {
+    this._name = name;
+    this._value = value;
+    this._prefix = prefix;
+    this._hidden = hidden;
+  }
 
   public get prefix() {
     return this._prefix;
@@ -24,6 +30,11 @@ export class Argument<T = string> {
 
   public setValue(value: T) {
     this._value = value;
+    return this;
+  }
+
+  public setHidden(value: boolean) {
+    this._hidden = value;
     return this;
   }
 

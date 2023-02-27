@@ -2,12 +2,22 @@ import { Client } from '../common/client';
 import { Manifest } from './dto/manifest';
 
 export class Games {
-  public static getAvailableVersions() {
-    const client = new Client(
-      'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json'
-    );
+  public static readonly METADATA_URL = new URL(
+    'https://piston-meta.mojang.com'
+  );
 
-    return client.get<Manifest>();
+  public static readonly LIBRARIES_URL = new URL(
+    'https://libraries.minecraft.net'
+  );
+
+  public static readonly ASSETS_URL = new URL(
+    'https://resources.download.minecraft.net'
+  );
+
+  public static getAvailableVersions() {
+    const client = new Client(this.METADATA_URL);
+
+    return client.get<Manifest>('/mc/game/version_manifest_v2.json');
   }
 
   public static downloadLibraies(name: string) {

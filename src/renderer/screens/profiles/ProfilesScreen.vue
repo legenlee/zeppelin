@@ -37,8 +37,6 @@ const profiles = [
     <VAppBar>
       <VBtn rounded>Create Profile</VBtn>
       <VDivider class="mx-2" vertical></VDivider>
-      <VBtn rounded>Buy me a coffee</VBtn>
-      <VDivider class="mx-2" vertical></VDivider>
       <VBtn rounded :to="{ name: Routes.SETTINGS }">Settings</VBtn>
       <VDivider class="ml-2" vertical></VDivider>
 
