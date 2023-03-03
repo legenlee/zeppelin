@@ -1,4 +1,5 @@
 import https from 'https';
+import fs from 'fs';
 import { ConnectionState } from 'core/enums/connectionState';
 
 export class Client {
@@ -16,31 +17,59 @@ export class Client {
   ) {
     return new Promise<T>((resolve, reject) => {
       const chunks: Uint8Array[] = [];
-      const request = https.request(
-        url,
-        {
-          ...options,
-        },
-        (response) => {
-          response.on('data', (chunk) => {
-            chunks.push(chunk);
-          });
+      const request = https.request(url, { ...options }, (response) => {
+        response.on('data', (chunk) => {
+          chunks.push(chunk);
+        });
 
-          response.on('error', (err) => {
-            this._connectionState = ConnectionState.ERROR;
-            reject(err);
-          });
+        response.on('error', (err) => {
+          this._connectionState = ConnectionState.ERROR;
+          reject(err);
+        });
 
-          response.on('end', () => {
-            const data = JSON.parse(Buffer.concat(chunks).toString('utf-8'));
-            this._connectionState = ConnectionState.COMPLETED;
-            resolve(data);
-          });
-        }
-      );
+        response.on('end', () => {
+          const data = JSON.parse(Buffer.concat(chunks).toString('utf-8'));
+          this._connectionState = ConnectionState.COMPLETED;
+          resolve(data);
+        });
+      });
 
       if (data != null) {
         request.write(data);
+      }
+
+      request.end();
+    });
+  }
+
+  private promisifiedDownload(
+    path: string,
+    filepath: string,
+    params?: Record<string, unknown>,
+    options?: https.RequestOptions
+  ) {
+    const url = path != null ? new URL(path, this._baseURL) : this._baseURL;
+
+    return new Promise<void>((resolve, reject) => {
+      const file = fs.createWriteStream(filepath);
+      const request = https.get(url, { ...options }, (response) => {
+        response.pipe(file);
+      });
+
+      file.on('finish', () => {
+        file.close();
+      });
+
+      file.on('error', (error) => {
+        reject(error);
+      });
+
+      file.on('close', () => {
+        resolve();
+      });
+
+      if (params != null) {
+        request.write(params);
       }
 
       request.end();
@@ -110,6 +139,15 @@ export class Client {
       method: 'DELETE',
       ...options,
     });
+  }
+
+  public download(
+    path: string,
+    filepath?: string,
+    params?: Record<string, unknown>,
+    options?: https.RequestOptions
+  ) {
+    return this.promisifiedDownload(path, filepath, params, options);
   }
 
   public get connectionState() {
