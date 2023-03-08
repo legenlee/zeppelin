@@ -1,9 +1,11 @@
+import { LauncherState } from 'core/enums/launcherState';
 import { LauncherProperties } from './launcherProperties';
 import { LaunchOptions } from './launchOptions';
 import { LaunchProfile } from './launchProfile';
 
 export class Launcher {
   private _launcherProperties: LauncherProperties;
+  private _launcherState: LauncherState;
 
   private constructor(launcherProperties: LauncherProperties) {
     this._launcherProperties = launcherProperties;
@@ -41,6 +43,14 @@ export class Launcher {
     //
   }
 
+  private async _saveConfig() {
+    //
+  }
+
+  private async _loadConfig() {
+    //
+  }
+
   public async launch(
     launchOptions: LaunchOptions,
     launchProfile: LaunchProfile
@@ -56,7 +66,7 @@ export class Launcher {
    */
   public static create(launcherProperties: LauncherProperties) {
     // TODO: 부트스트랩 소스 구현
-    return new Launcher();
+    return new Launcher(launcherProperties);
   }
 
   /**
@@ -65,6 +75,6 @@ export class Launcher {
    */
   public static load() {
     // TODO: 로드 소스 구현
-    return new Launcher();
+    // return new Launcher();
   }
 }
