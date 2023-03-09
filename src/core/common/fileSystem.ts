@@ -18,7 +18,6 @@ export class FileSystem {
     try {
       info = await this._checkBeforeAction(path);
     } catch (error) {
-      console.error(error);
       if (error instanceof NotFoundException) {
         throw error;
       }
@@ -41,7 +40,6 @@ export class FileSystem {
     try {
       info = await this._checkBeforeAction(path);
     } catch (error) {
-      console.error(error);
       if (error instanceof NotFoundException) {
         throw error;
       }
