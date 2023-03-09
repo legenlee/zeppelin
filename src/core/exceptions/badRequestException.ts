@@ -1,6 +1,6 @@
 import { BaseException } from './baseException';
 
-export class NotFoundException extends BaseException {
+export class BadRequestException extends BaseException {
   public constructor(message: string) {
     super(message);
   }
