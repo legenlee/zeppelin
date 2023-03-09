@@ -3,4 +3,5 @@ export enum LauncherState {
   VALIDATING,
   DOWNLOADING,
   RUNNING,
+  ERROR = 99,
 }
