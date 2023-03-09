@@ -1,5 +1,6 @@
 import { BadRequestException } from 'core/exceptions/badRequestException';
 import { MetaValidationException } from 'core/exceptions/metaValidationException';
+import { NotFoundException } from 'core/exceptions/notFoundException';
 import { UnhandledException } from 'core/exceptions/unhandledException';
 import { Manifest } from '../api/dto/manifest';
 import { Games } from '../api/games';
@@ -49,9 +50,13 @@ export class Launcher {
         throw new MetaValidationException(
           `Cannot parse the meta file. Seems it has been edited or corrupted. Path: ${this._metaFilePath}`
         );
-      } else if (error instanceof BadRequestException) {
+      } else if (error instanceof NotFoundException) {
         throw new MetaValidationException(
           `Cannot find the meta file. Path: ${this._metaFilePath}`
+        );
+      } else if (error instanceof BadRequestException) {
+        throw new MetaValidationException(
+          `Cannot find the meta file but a directory. Path: ${this._metaFilePath}`
         );
       }
 
