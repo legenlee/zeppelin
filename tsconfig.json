@@ -14,7 +14,8 @@
     "paths": {
       "*": ["node_modules/*"],
       "core/*": ["src/core/*"]
-    }
+    },
+    "strictNullChecks": true
   },
   "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"]
 }
