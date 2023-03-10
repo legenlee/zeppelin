@@ -1,19 +1,25 @@
-import { BadRequestException } from 'core/exceptions/badRequestException';
-import { MetaValidationException } from 'core/exceptions/metaValidationException';
-import { NotFoundException } from 'core/exceptions/notFoundException';
-import { UnhandledException } from 'core/exceptions/unhandledException';
-import { Manifest } from '../api/dto/manifest';
 import { Games } from '../api/games';
+import { Manifest } from '../api/dto/manifest';
+import { BadRequestException } from '../exceptions/badRequestException';
+import { MetaValidationException } from '../exceptions/metaValidationException';
+import { NotFoundException } from '../exceptions/notFoundException';
+import { UnhandledException } from '../exceptions/unhandledException';
+import { VersionValidationException } from '../exceptions/versionValidationException';
 import { Constants } from '../common/constants';
 import { FileSystem } from '../common/fileSystem';
 import { LauncherState } from '../enums/launcherState';
 import { LauncherProperties } from './launcherProperties';
 import { LaunchOptions } from './launchOptions';
 import { LaunchProfile } from './launchProfile';
+import { VersionDetail } from 'core/api/dto/versionDetail';
 
 export class Launcher {
   private _launcherProperties: LauncherProperties;
   private _launcherState: LauncherState;
+
+  private get _versionFilePath() {
+    return `${this._launcherProperties.metasPath}/${this._launcherProperties.versionId}.json`;
+  }
 
   private get _metaFilePath() {
     return `${this._launcherProperties.metasPath}/${Constants.META_FILE_NAME}`;
@@ -48,7 +54,7 @@ export class Launcher {
     } catch (error) {
       if (error instanceof SyntaxError) {
         throw new MetaValidationException(
-          `Cannot parse the meta file. Seems it has been edited or corrupted. Path: ${this._metaFilePath}`
+          `Cannot parse the meta file. Seems it has been corrupted. Path: ${this._metaFilePath}`
         );
       } else if (error instanceof NotFoundException) {
         throw new MetaValidationException(
@@ -66,6 +72,35 @@ export class Launcher {
     return meta;
   }
 
+  private async _validateVersion() {
+    let version: VersionDetail;
+
+    try {
+      const rawVersionFile = await FileSystem.readFile(this._versionFilePath);
+      version = JSON.parse(rawVersionFile);
+    } catch (error) {
+      if (error instanceof SyntaxError) {
+        throw new VersionValidationException(
+          `Cannot parse the version file. Seems it has been corrupted. Path: ${this._versionFilePath}`
+        );
+      } else if (error instanceof NotFoundException) {
+        throw new VersionValidationException(
+          `Cannot find the version file. Path: ${this._versionFilePath}`
+        );
+      } else if (error instanceof BadRequestException) {
+        throw new VersionValidationException(
+          `Cannot find the version file but a directory. Path: ${this._versionFilePath}`
+        );
+      }
+
+      throw new UnhandledException(
+        'Unhandled exception from validating version file.'
+      );
+    }
+
+    return version;
+  }
+
   private async _validateLibraries() {
     //
   }
@@ -75,6 +110,10 @@ export class Launcher {
   }
 
   private async _downloadMeta() {
+    //
+  }
+
+  private async _downloadVersion() {
     //
   }
 
