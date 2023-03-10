@@ -9,7 +9,7 @@ export class LibraryValidationException extends FileValidationException {
       failed.length
     } ${tail} failed. List: ${failed.join('\n')}`;
 
-    super(message, 'library');
+    super(message);
     this._failed = failed;
   }
 

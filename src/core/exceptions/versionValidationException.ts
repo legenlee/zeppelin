@@ -1,6 +1,6 @@
 import { FileValidationException } from './fileValidationException';
 
-export class MetaValidationException extends FileValidationException {
+export class VersionValidationException extends FileValidationException {
   public constructor(message: string) {
     super(message);
   }

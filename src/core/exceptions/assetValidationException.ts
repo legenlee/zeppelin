@@ -9,7 +9,7 @@ export class AssetValidationException extends FileValidationException {
       failed.length
     } ${tail} failed. List: ${failed.join('\n')}`;
 
-    super(message, 'assets');
+    super(message);
     this._failed = failed;
   }
 
