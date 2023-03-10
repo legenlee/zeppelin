@@ -31,4 +31,24 @@ export class LauncherProperties {
   public get librariesPath() {
     return this._librariesPath;
   }
+
+  public setVersionId(value: string): this {
+    this._versionId = value;
+    return this;
+  }
+
+  public setMetasPath(value: string): this {
+    this._metasPath = value;
+    return this;
+  }
+
+  public setAssetsPath(value: string): this {
+    this._assetsPath = value;
+    return this;
+  }
+
+  public setLibrariesPath(value: string): this {
+    this._librariesPath = value;
+    return this;
+  }
 }
