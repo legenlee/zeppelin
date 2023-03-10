@@ -1,9 +1,5 @@
+import { Latest } from './latest';
 import { Version } from './version';
-
-class Latest {
-  public readonly release: string;
-  public readonly snapshot: string;
-}
 
 export class Manifest {
   public readonly latest: Latest;
