@@ -1,7 +1,7 @@
-import { BaseException } from './baseException';
+import { FileValidationException } from './fileValidationException';
 
-export class MetaValidationException extends BaseException {
+export class MetaValidationException extends FileValidationException {
   public constructor(message: string) {
-    super(message);
+    super(message, 'meta');
   }
 }

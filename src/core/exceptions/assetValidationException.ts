@@ -1,6 +1,6 @@
-import { BaseException } from './baseException';
+import { FileValidationException } from './fileValidationException';
 
-export class AssetValidationException extends BaseException {
+export class AssetValidationException extends FileValidationException {
   private _failed: string[];
 
   public constructor(failed: string[]) {
@@ -9,7 +9,7 @@ export class AssetValidationException extends BaseException {
       failed.length
     } ${tail} failed. List: ${failed.join('\n')}`;
 
-    super(message);
+    super(message, 'assets');
     this._failed = failed;
   }
 
