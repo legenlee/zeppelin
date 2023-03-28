@@ -10,7 +10,7 @@ export class Client {
     this._baseURL = typeof url === 'string' ? new URL(url) : url;
   }
 
-  private promisifiedRequest<T>(
+  private _promisifiedRequest<T>(
     url: URL,
     data?: Record<string, unknown>,
     options?: https.RequestOptions
@@ -42,7 +42,7 @@ export class Client {
     });
   }
 
-  private promisifiedDownload(
+  private _promisifiedDownload(
     path: string,
     filepath: string,
     params?: Record<string, unknown>,
@@ -82,7 +82,7 @@ export class Client {
     options?: https.RequestOptions
   ) {
     const url = path != null ? new URL(path, this._baseURL) : this._baseURL;
-    return await this.promisifiedRequest<T>(url, data, options);
+    return await this._promisifiedRequest<T>(url, data, options);
   }
 
   public get<T>(
@@ -147,7 +147,7 @@ export class Client {
     params?: Record<string, unknown>,
     options?: https.RequestOptions
   ) {
-    return this.promisifiedDownload(path, filepath, params, options);
+    return this._promisifiedDownload(path, filepath, params, options);
   }
 
   public get connectionState() {
