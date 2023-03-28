@@ -1,7 +1,7 @@
 import { BaseException } from './baseException';
 
 export class FileValidationException extends BaseException {
-  protected constructor(message: string) {
+  public constructor(message: string) {
     super(message);
   }
 
