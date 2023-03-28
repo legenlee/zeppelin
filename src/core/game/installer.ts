@@ -5,6 +5,7 @@ import { Constants } from '../common/constants';
 import { FileSystem } from '../common/fileSystem';
 import { FileValidationException } from '../exceptions/fileValidationException';
 import { UnhandledException } from '../exceptions/unhandledException';
+import { InstallerOptions } from './installerOptions';
 
 // TODO: 런처 클래스로부터 파일 설치 로직 분리
 
@@ -13,10 +14,9 @@ import { UnhandledException } from '../exceptions/unhandledException';
  */
 export class Installer {
   private _baseDirectory: string;
-  private static _instance: Installer;
 
-  private constructor(baseDirectory: string) {
-    this._baseDirectory = baseDirectory;
+  private constructor(options: InstallerOptions) {
+    this._baseDirectory = options.baseDirectory;
   }
 
   public get baseDirectory() {
@@ -35,14 +35,14 @@ export class Installer {
     return path.join(this._baseDirectory, Constants.VERSIONS_DIRECTORY_NAME);
   }
 
+  public get versionsFilePath() {
+    return path.join(this.versionsDirectory, Constants.VERSIONS_FILE_NAME);
+  }
+
   private async _readManifestFile() {
     let jsonData: Manifest;
-    const versionsFilePath = path.join(
-      this.versionsDirectory,
-      Constants.VERSIONS_FILE_NAME
-    );
 
-    const rawData = await FileSystem.readFile(versionsFilePath);
+    const rawData = await FileSystem.readFile(this.versionsFilePath);
 
     if (typeof rawData !== 'string' || rawData.length === 0) {
       throw new FileValidationException('Versions file is empty.');
@@ -58,7 +58,7 @@ export class Installer {
       }
 
       throw new UnhandledException(
-        `Unhandled exception from reading version file. Path: ${versionsFilePath}`
+        `Unhandled exception from reading version file. Path: ${this.versionsFilePath}`
       );
     }
 
@@ -71,8 +71,11 @@ export class Installer {
 
     try {
       jsonData = await Games.getAvailableVersions();
+      await FileSystem.writeFile(
+        this.versionsFilePath,
+        JSON.stringify(jsonData)
+      );
     } catch (error) {
-      // TODO: Handling network exception.
       console.error(error);
       throw error;
     }
@@ -80,11 +83,24 @@ export class Installer {
     return jsonData;
   }
 
-  public static getAvailableVersions(offline: false) {
+  /**
+   * Gets available Minecraft versions.
+   * @param offline If sets to true, the method will get versions from cached file. otherwise fetchs from Mojang API. default is ``false``.
+   * @returns Available versions json.
+   */
+  public getAvailableVersions(offline = false) {
     if (offline) {
-      return this._instance._readManifestFile();
+      return this._readManifestFile();
     }
 
-    return this._instance._fetchManifestFile();
+    return this._fetchManifestFile();
+  }
+
+  /**
+   * Creates installer instance.
+   * @returns Installer instance.
+   */
+  public static create(options: InstallerOptions) {
+    return new Installer(options);
   }
 }

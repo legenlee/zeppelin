@@ -1,6 +1,6 @@
-import { BadRequestException } from 'core/exceptions/badRequestException';
-import { NotFoundException } from 'core/exceptions/notFoundException';
-import { UnhandledException } from 'core/exceptions/unhandledException';
+import { BadRequestException } from '../exceptions/badRequestException';
+import { NotFoundException } from '../exceptions/notFoundException';
+import { UnhandledException } from '../exceptions/unhandledException';
 import fs from 'fs';
 
 export class FileSystem {
@@ -57,8 +57,13 @@ export class FileSystem {
     return readFileResult.toString();
   }
 
-  public static async write(path: fs.PathLike) {
-    //
+  public static async writeFile(path: fs.PathLike, data: string) {
+    try {
+      await fs.promises.writeFile(path, data);
+    } catch (error) {
+      //
+      throw new UnhandledException();
+    }
   }
 
   public static async delete(path: fs.PathLike) {
