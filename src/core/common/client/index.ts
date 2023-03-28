@@ -1,6 +1,6 @@
 import https from 'https';
 import fs from 'fs';
-import { ConnectionState } from './enums/connectionState';
+import { ConnectionState } from '../enums/connectionState';
 
 export class Client {
   private _connectionState: ConnectionState = ConnectionState.IDLE;
@@ -22,9 +22,10 @@ export class Client {
           chunks.push(chunk);
         });
 
-        response.on('error', (err) => {
+        response.on('error', (error) => {
           this._connectionState = ConnectionState.ERROR;
-          reject(err);
+          console.error(error);
+          reject(error);
         });
 
         response.on('end', () => {
