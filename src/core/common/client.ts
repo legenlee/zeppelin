@@ -1,6 +1,6 @@
 import https from 'https';
 import fs from 'fs';
-import { ConnectionState } from 'core/enums/connectionState';
+import { ConnectionState } from './enums/connectionState';
 
 export class Client {
   private _connectionState: ConnectionState = ConnectionState.IDLE;
@@ -141,14 +141,14 @@ export class Client {
     });
   }
 
-  public download(
-    path: string,
-    filepath?: string,
-    params?: Record<string, unknown>,
-    options?: https.RequestOptions
-  ) {
-    return this._promisifiedDownload(path, filepath, params, options);
-  }
+  // public download(
+  //   path: string,
+  //   filepath?: string,
+  //   params?: Record<string, unknown>,
+  //   options?: https.RequestOptions
+  // ) {
+  //   return this._promisifiedDownload(path, filepath, params, options);
+  // }
 
   public get connectionState() {
     return this._connectionState;
