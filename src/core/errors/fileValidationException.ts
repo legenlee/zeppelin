@@ -1,6 +1,6 @@
-import { BaseException } from './baseException';
+import { BaseError } from './baseError';
 
-export class FileValidationException extends BaseException {
+export class FileValidationException extends BaseError {
   public constructor(message: string) {
     super(message);
   }

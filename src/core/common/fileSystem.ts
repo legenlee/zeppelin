@@ -1,6 +1,6 @@
-import { BadRequestException } from '../exceptions/badRequestException';
-import { NotFoundException } from '../exceptions/notFoundException';
-import { UnhandledException } from '../exceptions/unhandledException';
+import { BadRequestException } from '../errors/badRequestException';
+import { NotFoundException } from '../errors/notFoundException';
+import { UnhandledException } from '../errors/unhandledException';
 import fs from 'fs';
 
 export class FileSystem {
@@ -61,7 +61,6 @@ export class FileSystem {
     try {
       await fs.promises.writeFile(path, data);
     } catch (error) {
-      //
       throw new UnhandledException();
     }
   }

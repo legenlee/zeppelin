@@ -1,10 +1,10 @@
 import { Games } from '../api/games';
 import { Manifest } from '../api/dto/manifest';
-import { BadRequestException } from '../exceptions/badRequestException';
-import { MetaValidationException } from '../exceptions/metaValidationException';
-import { NotFoundException } from '../exceptions/notFoundException';
-import { UnhandledException } from '../exceptions/unhandledException';
-import { VersionValidationException } from '../exceptions/versionValidationException';
+import { BadRequestException } from '../errors/badRequestException';
+import { MetaValidationException } from '../errors/metaValidationException';
+import { NotFoundException } from '../errors/notFoundException';
+import { UnhandledException } from '../errors/unhandledException';
+import { VersionValidationException } from '../errors/versionValidationException';
 import { Constants } from '../common/constants';
 import { FileSystem } from '../common/fileSystem';
 import { LauncherState } from '../enums/launcherState';

@@ -3,8 +3,8 @@ import { Manifest } from '../api/dto/manifest';
 import { Games } from '../api/games';
 import { Constants } from '../common/constants';
 import { FileSystem } from '../common/fileSystem';
-import { FileValidationException } from '../exceptions/fileValidationException';
-import { UnhandledException } from '../exceptions/unhandledException';
+import { FileValidationException } from '../errors/fileValidationException';
+import { UnhandledException } from '../errors/unhandledException';
 import { InstallerOptions } from './installerOptions';
 
 // TODO: 런처 클래스로부터 파일 설치 로직 분리
