@@ -13,7 +13,7 @@ module.exports = {
     'plugin:import/typescript',
     'plugin:vue/vue3-recommended',
     '@vue/eslint-config-typescript',
-    '@vue/eslint-config-prettier/skip-formatting'
+    '@vue/eslint-config-prettier/skip-formatting',
   ],
   rules: {
     'prettier/prettier': 'error',
