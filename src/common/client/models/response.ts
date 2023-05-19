@@ -1,6 +1,6 @@
+import { Serializer } from 'common/serializer';
 import { Nullable } from 'common/types/nullable';
 import { StatusCode } from '../enums/statusCode';
-import { Serializer } from '../helpers/serializer';
 
 export class Response<T> {
   private _statusCode?: StatusCode;

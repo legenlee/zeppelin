@@ -1,7 +1,7 @@
 import http from 'http';
 import https, { RequestOptions } from 'https';
+import { Serializer } from 'common/serializer';
 import { Response } from './models/response';
-import { Serializer } from './helpers/serializer';
 
 export class Client {
   private _url: URL;
