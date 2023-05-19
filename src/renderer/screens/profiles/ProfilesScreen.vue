@@ -3,7 +3,6 @@ import { mdiPlayCircle } from '@mdi/js';
 import UserAvatar from '../../domains/user/UserAvatar.vue';
 import ProfileListItem from '../../domains/profile/ProfileListItem.vue';
 import { Routes } from '../../plugins/router/routes';
-import { ModPlatform } from 'core/enums/modPlatform';
 
 const profiles = [
   {
@@ -15,19 +14,16 @@ const profiles = [
     id: 2,
     name: 'Profile 2',
     version: '1.12.2',
-    modded: ModPlatform.FORGE,
   },
   {
     id: 3,
     name: 'Profile 2',
     version: '1.19.2',
-    modded: ModPlatform.QUILT,
   },
   {
     id: 4,
     name: 'Profile 3',
     version: '1.16.5',
-    modded: ModPlatform.FABRIC,
   },
 ];
 </script>
