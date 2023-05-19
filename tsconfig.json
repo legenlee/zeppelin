@@ -13,7 +13,7 @@
     "resolveJsonModule": true,
     "paths": {
       "*": ["node_modules/*"],
-      "core/*": ["src/core/*"]
+      "common": ["src/common/*"]
     },
     "strictNullChecks": true
   },

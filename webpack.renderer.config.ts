@@ -28,7 +28,7 @@ export const rendererConfig: Configuration = {
   plugins: [...plugins, new VueLoaderPlugin()],
   resolve: {
     alias: {
-      core: path.resolve(__dirname, './src/core'),
+      common: path.resolve(__dirname, './src/common'),
     },
     extensions: ['.js', '.ts', '.jsx', '.tsx', '.css'],
   },
