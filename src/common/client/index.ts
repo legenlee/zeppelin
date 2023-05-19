@@ -2,6 +2,10 @@ import http from 'http';
 import https, { RequestOptions } from 'https';
 import { Serializer } from 'common/serializer';
 import { Response } from './models/response';
+import { ConventionTransformer } from 'common/conventionTransformer';
+import { Nullable } from 'common/types/nullable';
+import { ResponseHeaders } from './types/responseHeaders';
+import { HttpError } from './errors/httpError';
 
 export class Client {
   private _url: URL;
@@ -44,12 +48,33 @@ export class Client {
           });
 
           incoming.on('end', () => {
-            const response = new Response<T>(data, incoming.statusCode);
+            const camelizedHeaders: ResponseHeaders = {};
+
+            Object.entries(incoming.headers).forEach(([key, value]) => {
+              camelizedHeaders[
+                ConventionTransformer.kebabCaseToCamelCase(key)
+              ] = value;
+            });
+
+            const response = new Response<T>(
+              camelizedHeaders,
+              data,
+              incoming.statusCode
+            );
+
+            if (response.isError) {
+              const errorMessage = response.isTimeoutError
+                ? 'Request timeout.'
+                : `Request failed with status code ${response.statusCode}.`;
+
+              reject(new HttpError(errorMessage, response));
+            }
+
             resolve(response);
           });
 
           incoming.on('error', (error) => {
-            reject(error);
+            reject(new Error('Unhandled error occured : ' + error.message));
           });
         }
       );

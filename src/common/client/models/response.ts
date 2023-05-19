@@ -1,13 +1,20 @@
 import { Serializer } from 'common/serializer';
 import { Nullable } from 'common/types/nullable';
 import { StatusCode } from '../enums/statusCode';
+import { ResponseHeaders } from '../types/responseHeaders';
 
 export class Response<T> {
   private _statusCode?: StatusCode;
+  private _headers: ResponseHeaders;
   private _rawBody: string;
   private _body: T;
 
-  public constructor(body: string, statusCode?: StatusCode) {
+  public constructor(
+    headers: ResponseHeaders,
+    body: string,
+    statusCode?: StatusCode
+  ) {
+    this._headers = headers;
     this._statusCode = statusCode;
     this._rawBody = body;
     this._body = Serializer.deserialize<T>(body);
@@ -37,19 +44,23 @@ export class Response<T> {
     return this._statusCode?.toString().startsWith('5') ?? false;
   }
 
-  public get isTimeout(): boolean {
+  public get isTimeoutError(): boolean {
     return this._statusCode == null;
   }
 
   public get isError(): boolean {
-    return this.isClientError || this.isServerError || this.isTimeout;
+    return this.isClientError || this.isServerError || this.isTimeoutError;
   }
 
-  public toString(): string {
+  public get headers(): ResponseHeaders {
+    return this._headers;
+  }
+
+  public get rawBody(): string {
     return this._rawBody;
   }
 
-  public toJSON(): T {
+  public get body(): T {
     return this._body;
   }
 }
