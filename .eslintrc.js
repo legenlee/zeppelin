@@ -12,13 +12,9 @@ module.exports = {
     'plugin:import/electron',
     'plugin:import/typescript',
     'plugin:vue/vue3-recommended',
-    'prettier',
+    '@vue/eslint-config-typescript',
+    '@vue/eslint-config-prettier/skip-formatting'
   ],
-  parser: 'vue-eslint-parser',
-  parserOptions: {
-    parser: '@typescript-eslint/parser',
-  },
-  plugins: ['@typescript-eslint', 'prettier'],
   rules: {
     'prettier/prettier': 'error',
     'import/no-unresolved': 'off',
