@@ -1,6 +1,7 @@
 import { Nullable } from 'common/types/nullable';
 import { StatusCode } from '../enums/statusCode';
 import { Response } from '../models/response';
+import { ResponseHeaders } from '../types/responseHeaders';
 
 export class HttpError<T = void> extends Error {
   private _response: Response<T>;
@@ -18,8 +19,8 @@ export class HttpError<T = void> extends Error {
     return this._response.statusCode;
   }
 
-  public get header(): Record<string, string> {
-    return this._response.header;
+  public get headers(): ResponseHeaders {
+    return this._response.headers;
   }
 
   public get body(): T {

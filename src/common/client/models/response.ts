@@ -1,4 +1,4 @@
-import { Serializer } from 'common/serializer';
+import { Serializer } from 'common/utils/serializer';
 import { Nullable } from 'common/types/nullable';
 import { StatusCode } from '../enums/statusCode';
 import { ResponseHeaders } from '../types/responseHeaders';

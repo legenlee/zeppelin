@@ -1,12 +1,14 @@
 import http from 'http';
 import https, { RequestOptions } from 'https';
-import { Serializer } from 'common/serializer';
-import { Response } from './models/response';
-import { ConventionTransformer } from 'common/conventionTransformer';
-import { Nullable } from 'common/types/nullable';
-import { ResponseHeaders } from './types/responseHeaders';
+import { Serializer } from 'common/utils/serializer';
+import { ConventionTransformer } from 'common/utils/conventionTransformer';
 import { HttpError } from './errors/httpError';
+import { Response } from './models/response';
+import { ResponseHeaders } from './types/responseHeaders';
 
+/**
+ * Node.js에서 동작하는 HTTP 클라이언트입니다.
+ */
 export class Client {
   private _url: URL;
 
