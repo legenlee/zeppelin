@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { computed } from 'vue';
-import { Routes } from '../../plugins/router/routes';
-import { routes } from '../../plugins/router';
+import { RouteNames } from '../../routes/routeNames';
+import { routes } from '../../routes';
 import { useRoute } from 'vue-router';
 
 const route = useRoute();
 
 const settingRoutes = computed(
-  () => routes.find((c) => c.name === Routes.SETTINGS).children
+  () => routes.find((c) => c.name === RouteNames.SETTINGS)?.children
 );
 
 const currentSettingRouteName = computed(() => route.name);

@@ -4,3 +4,11 @@ declare module '*.vue' {
   const component: DefineComponent<{}, {}, any>;
   export default component;
 }
+
+declare global {
+  import { IpcRenderer } from 'electron';
+
+  interface Window {
+    ipc: IpcRenderer;
+  }
+}

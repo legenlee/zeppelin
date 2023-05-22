@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { mdiPlayCircle } from '@mdi/js';
-import UserAvatar from '../../domains/user/UserAvatar.vue';
-import ProfileListItem from '../../domains/profile/ProfileListItem.vue';
-import { Routes } from '../../plugins/router/routes';
+import UserAvatar from '../../components/user/UserAvatar.vue';
+import CreateProfileDialog from '../../components/profile/CreateProfileDialog.vue';
+import ProfileListItem from '../../components/profile/ProfileListItem.vue';
+import { RouteNames } from '../../routes/routeNames';
 
 const profiles = [
   {
@@ -33,7 +34,7 @@ const profiles = [
     <VAppBar>
       <VBtn rounded>Create Profile</VBtn>
       <VDivider class="mx-2" vertical></VDivider>
-      <VBtn rounded :to="{ name: Routes.SETTINGS }">Settings</VBtn>
+      <VBtn rounded :to="{ name: RouteNames.SETTINGS }">Settings</VBtn>
       <VDivider class="ml-2" vertical></VDivider>
 
       <VSpacer></VSpacer>
@@ -47,7 +48,6 @@ const profiles = [
           :key="profile.id"
           :name="profile.name"
           :version="profile.version"
-          :modded="profile.modded"
         ></ProfileListItem>
       </VList>
     </VNavigationDrawer>
@@ -70,6 +70,8 @@ const profiles = [
               </div>
             </div>
           </VCol>
+
+          <CreateProfileDialog></CreateProfileDialog>
         </VRow>
       </VContainer>
     </VMain>

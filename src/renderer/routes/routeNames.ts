@@ -1,4 +1,4 @@
-export enum Routes {
+export enum RouteNames {
   ROOT = 'root',
   PROFILES = 'profiles',
   CREATE_PROFILE = 'createProfile',

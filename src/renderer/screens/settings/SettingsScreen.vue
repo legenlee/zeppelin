@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useRoute, useRouter } from 'vue-router';
 import { mdiArrowLeft } from '@mdi/js';
-import SettingsNavigationDrawer from '../../domains/settings/SettingsNavigationDrawer.vue';
+import SettingsNavigationDrawer from '../../components/settings/SettingsNavigationDrawer.vue';
 
 const router = useRouter();
 const route = useRoute();
