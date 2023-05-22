@@ -128,4 +128,8 @@ export class Client {
   public async delete<T>(path: string): Promise<Response<T>> {
     return this._promisifiedRequest<T>(path, { method: 'DELETE' });
   }
+
+  public static create(url: string | URL): Client {
+    return new Client(url);
+  }
 }
