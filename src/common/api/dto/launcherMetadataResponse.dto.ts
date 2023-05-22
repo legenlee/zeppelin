@@ -2,23 +2,15 @@ import { LauncherMetadataLatestDto } from './launcherMetadataLatest.dto';
 import { LauncherMetadataVersionDto } from './launcherMetadataVersion.dto';
 
 export class LauncherMetadataResponseDto {
-  private _latest: LauncherMetadataLatestDto;
-  private _versions: LauncherMetadataVersionDto[];
+  public latest: LauncherMetadataLatestDto;
+  public versions: LauncherMetadataVersionDto[];
 
   private constructor(
     latest: LauncherMetadataLatestDto,
     versions: LauncherMetadataVersionDto[]
   ) {
-    this._latest = latest;
-    this._versions = versions;
-  }
-
-  public get latest(): LauncherMetadataLatestDto {
-    return this._latest;
-  }
-
-  public get versions(): LauncherMetadataVersionDto[] {
-    return this._versions;
+    this.latest = latest;
+    this.versions = versions;
   }
 
   public static fromJSON(
@@ -32,12 +24,5 @@ export class LauncherMetadataResponseDto {
         LauncherMetadataVersionDto.fromJSON(version)
       )
     );
-  }
-
-  public toJSON(): Record<string, unknown> {
-    return {
-      latest: this._latest.toJSON(),
-      versions: this._versions.map((version) => version.toJSON()),
-    };
   }
 }
