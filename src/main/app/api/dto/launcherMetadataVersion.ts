@@ -1,4 +1,4 @@
-export class LauncherMetadataVersionDto {
+export class LauncherMetadataVersion {
   private _id: string;
   private _type: string;
   private _url: string;
@@ -55,8 +55,8 @@ export class LauncherMetadataVersionDto {
 
   public static fromJSON(
     json: Record<string, unknown>
-  ): LauncherMetadataVersionDto {
-    return new LauncherMetadataVersionDto(
+  ): LauncherMetadataVersion {
+    return new LauncherMetadataVersion(
       json.id as string,
       json.type as string,
       json.url as string,
