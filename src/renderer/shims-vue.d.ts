@@ -6,9 +6,7 @@ declare module '*.vue' {
 }
 
 declare global {
-  import { IpcRenderer } from 'electron';
-
   interface Window {
-    ipc: IpcRenderer;
+    ipc: import('electron').IpcRenderer;
   }
 }

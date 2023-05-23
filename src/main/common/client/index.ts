@@ -1,10 +1,10 @@
 import http from 'http';
 import https, { RequestOptions } from 'https';
-import { Serializer } from 'common/utils/serializer';
-import { ConventionTransformer } from 'common/utils/conventionTransformer';
 import { HttpError } from './errors/httpError';
 import { Response } from './models/response';
 import { ResponseHeaders } from './types/responseHeaders';
+import { Serializer } from '../../utils/serializer';
+import { ConventionTransformer } from '../../utils/conventionTransformer';
 
 /**
  * Node.js에서 동작하는 HTTP 클라이언트입니다.

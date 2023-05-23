@@ -1,5 +1,5 @@
 import { ipcMain } from 'electron';
-import { Metadata } from 'common/api/metadata';
+import { Metadata } from './api/metadata';
 
 export enum VersionChannelId {
   GET_MINECRAFT_VERSIONS = 'Version:getMinecraftVersions',
@@ -7,7 +7,9 @@ export enum VersionChannelId {
 
 export class Version {
   private static async _getMinecraftVersions() {
-    return await Metadata.getLauncherMetadata();
+    const result = await Metadata.getLauncherMetadata();
+
+    return result.versions.map((version) => version.id);
   }
 
   public static bootstrap() {

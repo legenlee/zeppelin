@@ -41,7 +41,6 @@ const init = async () => {
             <VSelect
               label="Version"
               :items="version.versions"
-              item-title="id"
               :loading="loading"
             >
             </VSelect>

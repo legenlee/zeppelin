@@ -1,20 +1,20 @@
 import { readonly, ref } from 'vue';
 import { defineStore } from 'pinia';
-import { LauncherMetadataResponseDto } from 'common/api/dto/launcherMetadataResponse.dto';
-import { LauncherMetadataVersionDto } from 'common/api/dto/launcherMetadataVersion.dto';
 
 const store = () => {
-  const versions = ref<LauncherMetadataVersionDto[]>([]);
-  const setVersions = (newVersions: LauncherMetadataVersionDto[]) => {
+  const versions = ref<string[]>([]);
+  const setVersions = (newVersions: string[]) => {
     versions.value = newVersions;
   };
 
   const fetchVersions = async () => {
     const result = (await window.ipc.invoke(
       'Version:getMinecraftVersions'
-    )) as LauncherMetadataResponseDto;
+    )) as string[];
 
-    setVersions(result.versions);
+    console.log(result);
+
+    setVersions(result);
   };
 
   return {

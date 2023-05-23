@@ -1,5 +1,5 @@
-import { Serializer } from 'common/utils/serializer';
-import { Nullable } from 'common/types/nullable';
+import { Serializer } from '../../../utils/serializer';
+import { Nullable } from '../../types/nullable';
 import { StatusCode } from '../enums/statusCode';
 import { ResponseHeaders } from '../types/responseHeaders';
 
