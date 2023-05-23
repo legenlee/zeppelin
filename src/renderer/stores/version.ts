@@ -12,8 +12,6 @@ const store = () => {
       'Version:getMinecraftVersions'
     )) as string[];
 
-    console.log(result);
-
     setVersions(result);
   };
 

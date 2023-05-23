@@ -27,11 +27,16 @@
  */
 
 import { createApp } from 'vue';
-import { router } from './plugins/router';
 import { vuetify } from './plugins/vuetify';
 import { pinia } from './plugins/pinia';
 
 import App from './App.vue';
 import { vueI18n } from './plugins/vueI18n';
 
-createApp(App).use(router).use(pinia).use(vuetify).use(vueI18n).mount('#app');
+const app = createApp(App);
+
+app.use(pinia);
+app.use(vuetify);
+app.use(vueI18n);
+
+app.mount('#app');
