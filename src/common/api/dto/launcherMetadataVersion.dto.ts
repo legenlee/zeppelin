@@ -1,11 +1,11 @@
 export class LauncherMetadataVersionDto {
-  public id: string;
-  public type: string;
-  public url: string;
-  public time: string;
-  public releaseTime: string;
-  public sha1: string;
-  public compilanceLevel: string;
+  private _id: string;
+  private _type: string;
+  private _url: string;
+  private _time: string;
+  private _releaseTime: string;
+  private _sha1: string;
+  private _compilanceLevel: string;
 
   private constructor(
     id: string,
@@ -16,13 +16,41 @@ export class LauncherMetadataVersionDto {
     sha1: string,
     compilanceLevel: string
   ) {
-    this.id = id;
-    this.type = type;
-    this.url = url;
-    this.time = time;
-    this.releaseTime = releaseTime;
-    this.sha1 = sha1;
-    this.compilanceLevel = compilanceLevel;
+    this._id = id;
+    this._type = type;
+    this._url = url;
+    this._time = time;
+    this._releaseTime = releaseTime;
+    this._sha1 = sha1;
+    this._compilanceLevel = compilanceLevel;
+  }
+
+  public get id(): string {
+    return this._id;
+  }
+
+  public get type(): string {
+    return this._type;
+  }
+
+  public get url(): string {
+    return this._url;
+  }
+
+  public get time(): string {
+    return this._time;
+  }
+
+  public get releaseTime(): string {
+    return this._releaseTime;
+  }
+
+  public get sha1(): string {
+    return this._sha1;
+  }
+
+  public get compilanceLevel(): string {
+    return this._compilanceLevel;
   }
 
   public static fromJSON(
@@ -37,5 +65,17 @@ export class LauncherMetadataVersionDto {
       json.sha1 as string,
       json.compilanceLevel as string
     );
+  }
+
+  public toJSON(): Record<string, unknown> {
+    return {
+      id: this._id,
+      type: this._type,
+      url: this._url,
+      time: this._time,
+      releaseTime: this._releaseTime,
+      sha1: this._sha1,
+      compilanceLevel: this._compilanceLevel,
+    };
   }
 }
