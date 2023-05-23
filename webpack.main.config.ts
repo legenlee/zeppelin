@@ -14,9 +14,6 @@ export const mainConfig: Configuration = {
     rules,
   },
   resolve: {
-    alias: {
-      common: path.resolve(__dirname, './src/common'),
-    },
     extensions: ['.js', '.ts', '.jsx', '.tsx', '.css', '.json'],
   },
 };
