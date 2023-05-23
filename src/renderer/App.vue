@@ -1,5 +1,13 @@
 <script setup lang="ts">
+import { onMounted } from 'vue';
 import AppScaffold from './components/AppScaffold.vue';
+import { useMetadataStore } from './stores/metadata';
+
+const metadata = useMetadataStore();
+
+onMounted(() => {
+  metadata.fetchMinecraftVersions();
+});
 </script>
 
 <template>
@@ -45,13 +53,17 @@ import AppScaffold from './components/AppScaffold.vue';
 
               <VRow>
                 <VCol>
-                  <VTextField label="Java runtime path" />
+                  <VTextField label="Java runtime path">
+                    <template #append>
+                      <VBtn size="small" variant="text">Browse</VBtn>
+                    </template>
+                  </VTextField>
                 </VCol>
               </VRow>
 
               <VRow>
                 <VCol>
-                  <VBtn color="primary" size="large" block>Launch</VBtn>
+                  <VBtn color="primary" size="x-large" block>Launch</VBtn>
                 </VCol>
               </VRow>
             </VContainer>
