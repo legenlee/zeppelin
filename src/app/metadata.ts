@@ -1,14 +1,11 @@
 import { ipcMain } from 'electron';
 import { Metadata as MetadataAPI } from './api/metadata';
-
-export enum MetadataChannel {
-  FETCH_MINECRAFT_VERSIONS = 'Metadata:getMinecraftVersions',
-}
+import { MetadataChannel } from './channels';
 
 export class Metadata {
   public static async fetchMinecraftVersions() {
     const result = await MetadataAPI.getLauncherMetadata();
-    return result;
+    return result.toJSON();
   }
 
   public static listen() {

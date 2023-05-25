@@ -1,6 +1,7 @@
 import { ipcRenderer } from 'electron';
 import { Constants } from '@/common/constants';
-import { Metadata, MetadataChannel } from './metadata';
+import { MetadataChannel } from './channels';
+import type { Metadata } from './metadata';
 
 export class Expose {
   public static readonly API_KEY = Constants.APP_ID;

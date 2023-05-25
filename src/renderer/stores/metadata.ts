@@ -16,17 +16,17 @@ const store = () => {
   const fetchMinecraftVersions = async () => {
     try {
       const result = await window.zeppelin.metadata.fetchMinecraftVersions();
-      setMinecraftVersions(result);
+      setMinecraftVersions(result as unknown as LauncherMetadataResponse);
     } catch (error) {
       //
     }
   };
 
-  const getLatestMinecraftVersions = computed(() => {
+  const latestMinecraftVersions = computed(() => {
     return minecraftVersions.value?.latest as Nullable<LauncherMetadataLatest>;
   });
 
-  const getReleaseMinecraftVersions = computed(() => {
+  const releaseMinecraftVersions = computed(() => {
     return (
       minecraftVersions.value?.versions
         .filter((version) => version.type === 'release')
@@ -37,8 +37,8 @@ const store = () => {
   return {
     minecraftVersions: readonly(minecraftVersions),
     fetchMinecraftVersions,
-    getLatestMinecraftVersions,
-    getReleaseMinecraftVersions,
+    latestMinecraftVersions,
+    releaseMinecraftVersions,
   };
 };
 

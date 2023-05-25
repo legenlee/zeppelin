@@ -1,12 +1,25 @@
 <script setup lang="ts">
-import { onMounted } from 'vue';
+import { onMounted, reactive } from 'vue';
 import AppScaffold from './components/AppScaffold.vue';
 import { useMetadataStore } from './stores/metadata';
 
 const metadata = useMetadataStore();
 
+const loading = reactive({
+  version: false,
+});
+
+const fetchVersion = async () => {
+  try {
+    loading.version = true;
+    await metadata.fetchMinecraftVersions();
+  } finally {
+    loading.version = false;
+  }
+};
+
 onMounted(() => {
-  metadata.fetchMinecraftVersions();
+  fetchVersion();
 });
 </script>
 
@@ -35,7 +48,11 @@ onMounted(() => {
                 </VCol>
 
                 <VCol>
-                  <VSelect label="Version" />
+                  <VSelect
+                    label="Version"
+                    :items="metadata.releaseMinecraftVersions"
+                    :loading="loading.version"
+                  />
                 </VCol>
               </VRow>
 
