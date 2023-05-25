@@ -27,11 +27,11 @@
  */
 
 import { createApp } from 'vue';
-import { vuetify } from './plugins/vuetify';
-import { pinia } from './plugins/pinia';
+import { vuetify } from './renderer/plugins/vuetify';
+import { pinia } from './renderer/plugins/pinia';
+import { vueI18n } from './renderer/plugins/vueI18n';
 
-import App from './App.vue';
-import { vueI18n } from './plugins/vueI18n';
+import App from './renderer/App.vue';
 
 const app = createApp(App);
 

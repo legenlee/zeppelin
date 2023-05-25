@@ -1,3 +1,5 @@
+import { Expose } from './app/expose';
+
 declare module '*.vue' {
   import type { DefineComponent } from 'vue';
   // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/ban-types
@@ -7,6 +9,8 @@ declare module '*.vue' {
 
 declare global {
   interface Window {
-    ipc: import('electron').IpcRenderer;
+    [Expose.API_KEY]: typeof Expose.API_METHODS;
   }
 }
+
+export {};
