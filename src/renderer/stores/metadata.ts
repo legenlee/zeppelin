@@ -1,7 +1,7 @@
 import { readonly, ref } from 'vue';
 import { defineStore } from 'pinia';
-// import { MetadataChannel } from '../../main/app/metadata';
-// import { LauncherMetadataVersion } from '../../main/app/api/dto/launcherMetadataVersion';
+import { MetadataChannel } from '@/app/metadata';
+import { LauncherMetadataVersion } from '@/app/api/dto/launcherMetadataVersion';
 
 const store = () => {
   const minecraftVersions = ref<Record<string, unknown>[]>([]);
@@ -10,10 +10,6 @@ const store = () => {
   };
 
   const fetchMinecraftVersions = async () => {
-    const result = (await window.ipc.invoke(
-      'Metadata:getMinecraftVersions'
-    )) as Record<string, unknown>[];
-
     setMinecraftVersions(result);
   };
 

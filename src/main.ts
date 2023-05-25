@@ -37,7 +37,7 @@ const createWindow = (): void => {
 };
 
 const bootstrap = (): void => {
-  Metadata.bootstrap();
+  Metadata.listen();
 };
 
 // This method will be called when Electron has finished
