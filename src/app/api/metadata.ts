@@ -1,5 +1,5 @@
-import { Client } from '../../common/client';
-import { Constants } from '../../common/constants';
+import { Client } from '../client';
+import { Constants } from '@/common/constants';
 import { LauncherMetadataResponse } from './dto/launcherMetadataResponse';
 
 export class Metadata {
