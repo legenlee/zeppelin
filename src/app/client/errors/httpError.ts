@@ -15,7 +15,7 @@ export class HttpError<T = void> extends Error {
     return this._response;
   }
 
-  public get statusCode(): Nullable<StatusCode> {
+  public get statusCode(): Nullable<number | StatusCode> {
     return this._response.statusCode;
   }
 

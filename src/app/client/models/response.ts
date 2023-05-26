@@ -4,7 +4,7 @@ import { StatusCode } from '../enums/statusCode';
 import { ResponseHeaders } from '../types/responseHeaders';
 
 export class Response<T> {
-  private _statusCode?: StatusCode;
+  private _statusCode?: number | StatusCode;
   private _headers: ResponseHeaders;
   private _rawBody: string;
   private _body: T;
@@ -12,7 +12,7 @@ export class Response<T> {
   public constructor(
     headers: ResponseHeaders,
     body: string,
-    statusCode?: StatusCode
+    statusCode?: number | StatusCode
   ) {
     this._headers = headers;
     this._statusCode = statusCode;
@@ -20,7 +20,7 @@ export class Response<T> {
     this._body = Serializer.deserialize<T>(body);
   }
 
-  public get statusCode(): Nullable<StatusCode> {
+  public get statusCode(): Nullable<number | StatusCode> {
     return this._statusCode;
   }
 
