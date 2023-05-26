@@ -1,3 +1,3 @@
-import { Nullable } from '../../types/nullable';
+import { Nullable } from '@/common/types/nullable';
 
 export type ResponseHeaders = Record<string, Nullable<string | string[]>>;

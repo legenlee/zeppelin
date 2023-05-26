@@ -1,4 +1,4 @@
-import { Nullable } from '../../types/nullable';
+import { Nullable } from '@/common/types/nullable';
 import { StatusCode } from '../enums/statusCode';
 import { Response } from '../models/response';
 import { ResponseHeaders } from '../types/responseHeaders';
