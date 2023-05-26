@@ -8,7 +8,7 @@ Core engine you can call to `zeppelin-core` is my first goal to implement and re
 
 ## Roadmaps
 
-- [ ] Displaying available Minecraft versions
+- [ ] Fetching available Minecraft versions
 - [ ] Installing assets and libraries required to launch Minecraft
 - [ ] Launching Minecraft
 - [ ] OAuth2 login (Microsoft only. Mojang and Legacy is not supported since Microsoft decided to deprecate them.)
