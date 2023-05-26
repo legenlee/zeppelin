@@ -1,4 +1,4 @@
-export class LauncherMetadataLatest {
+export class LauncherMetadataLatestDto {
   private _release: string;
   private _snapshot: string;
 
@@ -17,8 +17,8 @@ export class LauncherMetadataLatest {
 
   public static fromJSON(
     json: Record<string, unknown>
-  ): LauncherMetadataLatest {
-    return new LauncherMetadataLatest(
+  ): LauncherMetadataLatestDto {
+    return new LauncherMetadataLatestDto(
       json.release as string,
       json.snapshot as string
     );

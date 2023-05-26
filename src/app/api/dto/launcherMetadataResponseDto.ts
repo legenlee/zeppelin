@@ -1,23 +1,23 @@
-import { LauncherMetadataLatest } from './launcherMetadataLatest';
-import { LauncherMetadataVersion } from './launcherMetadataVersion';
+import { LauncherMetadataLatestDto } from './launcherMetadataLatestDto';
+import { LauncherMetadataVersionDto } from './launcherMetadataVersionDto';
 
 export class LauncherMetadataResponse {
-  private _latest: LauncherMetadataLatest;
-  private _versions: LauncherMetadataVersion[];
+  private _latest: LauncherMetadataLatestDto;
+  private _versions: LauncherMetadataVersionDto[];
 
   private constructor(
-    latest: LauncherMetadataLatest,
-    versions: LauncherMetadataVersion[]
+    latest: LauncherMetadataLatestDto,
+    versions: LauncherMetadataVersionDto[]
   ) {
     this._latest = latest;
     this._versions = versions;
   }
 
-  public get latest(): LauncherMetadataLatest {
+  public get latest(): LauncherMetadataLatestDto {
     return this._latest;
   }
 
-  public get versions(): LauncherMetadataVersion[] {
+  public get versions(): LauncherMetadataVersionDto[] {
     return this._versions;
   }
 
@@ -25,9 +25,11 @@ export class LauncherMetadataResponse {
     json: Record<string, unknown>
   ): LauncherMetadataResponse {
     return new LauncherMetadataResponse(
-      LauncherMetadataLatest.fromJSON(json.latest as Record<string, unknown>),
+      LauncherMetadataLatestDto.fromJSON(
+        json.latest as Record<string, unknown>
+      ),
       (json.versions as Record<string, unknown>[]).map((version) =>
-        LauncherMetadataVersion.fromJSON(version)
+        LauncherMetadataVersionDto.fromJSON(version)
       )
     );
   }

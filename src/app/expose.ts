@@ -1,6 +1,6 @@
 import { ipcRenderer } from 'electron';
 import { Constants } from '@/common/constants';
-import { MetadataChannel } from './channels';
+import { MetadataChannel } from './channels/metadataChannel';
 import type { Metadata } from './metadata';
 
 export class Expose {

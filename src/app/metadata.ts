@@ -1,6 +1,6 @@
 import { ipcMain } from 'electron';
-import { Metadata as MetadataAPI } from './api/metadata';
-import { MetadataChannel } from './channels';
+import { MetadataAPI } from './api/metadataAPI';
+import { MetadataChannel } from './channels/metadataChannel';
 
 export class Metadata {
   public static async fetchMinecraftVersions() {

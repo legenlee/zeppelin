@@ -1,12 +1,12 @@
 import { Client } from '../client';
 import { Constants } from '@/common/constants';
-import { LauncherMetadataResponse } from './dto/launcherMetadataResponse';
+import { LauncherMetadataResponse } from './dto/launcherMetadataResponseDto';
 
-export class Metadata {
+export class MetadataAPI {
   private static _client = Client.create(Constants.METADATA_URL);
 
   public static async getLauncherMetadata(): Promise<LauncherMetadataResponse> {
-    const response = await Metadata._client.get(
+    const response = await MetadataAPI._client.get(
       '/mc/game/version_manifest.json'
     );
 
