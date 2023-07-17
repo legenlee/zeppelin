@@ -14,9 +14,6 @@ module.exports = {
     'plugin:vue/vue3-recommended',
     '@vue/eslint-config-typescript',
     '@vue/eslint-config-prettier/skip-formatting',
+    'prettier',
   ],
-  rules: {
-    'prettier/prettier': 'error',
-    'import/no-unresolved': 'off',
-  },
 };
