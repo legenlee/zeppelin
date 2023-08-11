@@ -1,5 +1,5 @@
 import { Constants } from '@/common/constants';
-import { Client } from '../client';
+import { Client } from '../libs/client';
 import { LauncherMetadataResponse } from './dto/launcherMetadataResponseDto';
 
 export class MetadataAPI {
@@ -7,11 +7,11 @@ export class MetadataAPI {
 
   public static async getLauncherMetadata(): Promise<LauncherMetadataResponse> {
     const response = await MetadataAPI._client.get(
-      '/mc/game/version_manifest.json'
+      '/mc/game/version_manifest.json',
     );
 
     return LauncherMetadataResponse.fromJSON(
-      response.body as Record<string, unknown>
+      response.body as Record<string, unknown>,
     );
   }
 }
