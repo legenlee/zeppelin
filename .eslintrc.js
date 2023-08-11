@@ -4,6 +4,7 @@ module.exports = {
     es6: true,
     node: true,
   },
+  plugins: ['@typescript-eslint', 'import'],
   extends: [
     'eslint:recommended',
     'plugin:@typescript-eslint/eslint-recommended',
@@ -16,4 +17,9 @@ module.exports = {
     '@vue/eslint-config-prettier/skip-formatting',
     'prettier',
   ],
+  settings: {
+    'import/resolver': {
+      typescript: './tsconfig.json',
+    },
+  },
 };
