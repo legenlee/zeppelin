@@ -1,7 +1,7 @@
 import { ipcRenderer } from 'electron';
 import { Constants } from '@/common/constants';
+import { MetadataChannelNames } from './channels/enums/metadataChannelNames';
 import { MetadataChannel } from './channels/metadataChannel';
-import type { Metadata } from './metadata';
 
 export class Expose {
   public static readonly API_KEY = Constants.APP_ID;
@@ -9,8 +9,8 @@ export class Expose {
     metadata: {
       fetchMinecraftVersions: () => {
         return ipcRenderer.invoke(
-          MetadataChannel.FETCH_MINECRAFT_VERSIONS
-        ) as ReturnType<(typeof Metadata)['fetchMinecraftVersions']>;
+          MetadataChannelNames.FETCH_MINECRAFT_VERSIONS,
+        ) as ReturnType<(typeof MetadataChannel)['fetchMinecraftVersions']>;
       },
     },
   } as const;

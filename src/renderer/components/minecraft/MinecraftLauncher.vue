@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, reactive, ref } from 'vue';
+import { onMounted, reactive } from 'vue';
 import ZeppelinWarning from '../zeppelin/ZeppelinWarning.vue';
 import { useMetadataStore } from '../../stores/metadata';
 
