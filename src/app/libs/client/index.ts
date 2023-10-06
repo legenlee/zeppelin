@@ -6,9 +6,6 @@ import { ResponseHeaders } from './types/responseHeaders';
 import { Serializer } from '@/common/utils/serializer';
 import { ConventionTransformer } from '@/common/utils/conventionTransformer';
 
-/**
- * Node.js에서 동작하는 HTTP 클라이언트입니다.
- */
 export class Client {
   private _url: URL;
 
@@ -36,7 +33,7 @@ export class Client {
   private _promisifiedRequest<T>(
     path: string,
     options?: RequestOptions,
-    body?: string
+    body?: string,
   ): Promise<Response<T>> {
     return new Promise((resolve, reject) => {
       const request = this._clientModule.request(
@@ -61,7 +58,7 @@ export class Client {
             const response = new Response<T>(
               camelizedHeaders,
               data,
-              incoming.statusCode
+              incoming.statusCode,
             );
 
             if (response.isError) {
@@ -78,7 +75,7 @@ export class Client {
           incoming.on('error', (error) => {
             reject(new Error('Unhandled error occured : ' + error.message));
           });
-        }
+        },
       );
 
       if (body != null) {
@@ -105,7 +102,7 @@ export class Client {
           'Content-Length': Buffer.byteLength(serializedBody),
         },
       },
-      serializedBody
+      serializedBody,
     );
   }
 
@@ -121,7 +118,7 @@ export class Client {
           'Content-Length': Buffer.byteLength(serializedBody),
         },
       },
-      serializedBody
+      serializedBody,
     );
   }
 
