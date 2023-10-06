@@ -1,14 +1,14 @@
 import { readonly, ref, computed } from 'vue';
 import { defineStore } from 'pinia';
-import { LauncherMetadataLatestDto } from '@/app/api/dto/launcherMetadataLatestDto';
-import { LauncherMetadataResponseDto } from '@/app/api/dto/launcherMetadataResponseDto';
+import { LauncherMetadataLatest } from '@/app/api/types/launcherMetadataLatest';
+import { LauncherMetadataResponse } from '@/app/api/types/launcherMetadataResponse';
 import { Nullable } from '@/common/types/nullable';
 
 const store = () => {
-  const minecraftVersions = ref<Nullable<LauncherMetadataResponseDto>>(null);
+  const minecraftVersions = ref<Nullable<LauncherMetadataResponse>>(null);
 
   const setMinecraftVersions = (
-    newVersions: Nullable<LauncherMetadataResponseDto>,
+    newVersions: Nullable<LauncherMetadataResponse>,
   ) => {
     minecraftVersions.value = newVersions;
   };
@@ -16,15 +16,14 @@ const store = () => {
   const fetchMinecraftVersions = async () => {
     try {
       const result = await window.zeppelin.metadata.fetchMinecraftVersions();
-      setMinecraftVersions(result as unknown as LauncherMetadataResponseDto);
+      setMinecraftVersions(result as unknown as LauncherMetadataResponse);
     } catch (error) {
       //
     }
   };
 
   const latestMinecraftVersions = computed(() => {
-    return minecraftVersions.value
-      ?.latest as Nullable<LauncherMetadataLatestDto>;
+    return minecraftVersions.value?.latest as Nullable<LauncherMetadataLatest>;
   });
 
   const releaseMinecraftVersions = computed(() => {
