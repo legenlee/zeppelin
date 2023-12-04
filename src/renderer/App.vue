@@ -1,10 +1,13 @@
 <script setup lang="ts">
-import AppScaffold from './components/AppScaffold.vue';
 import MinecraftLauncher from './components/minecraft/MinecraftLauncher.vue';
 </script>
 
 <template>
-  <AppScaffold>
-    <MinecraftLauncher></MinecraftLauncher>
-  </AppScaffold>
+  <VApp theme="dark">
+    <VLayout>
+      <VMain>
+        <MinecraftLauncher></MinecraftLauncher>
+      </VMain>
+    </VLayout>
+  </VApp>
 </template>

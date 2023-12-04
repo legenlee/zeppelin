@@ -1,45 +1,4 @@
 <script setup lang="ts">
-import { onMounted, reactive } from 'vue';
-import ZeppelinWarning from '../zeppelin/ZeppelinWarning.vue';
-import { useMetadataStore } from '../../stores/metadata';
-
-const metadata = useMetadataStore();
-const loading = reactive({
-  version: false,
-  launch: false,
-});
-
-const snackbar = reactive({
-  show: false,
-  text: '',
-});
-
-const fetchVersion = async () => {
-  try {
-    loading.version = true;
-    await metadata.fetchMinecraftVersions();
-  } finally {
-    loading.version = false;
-  }
-};
-
-const launch = () => {
-  if (loading.launch) {
-    showSnackbar('Zeppelin is already launching Minecraft.');
-    return;
-  }
-
-  loading.launch = true;
-};
-
-const showSnackbar = (text: string) => {
-  snackbar.text = text;
-  snackbar.show = true;
-};
-
-onMounted(() => {
-  fetchVersion();
-});
 </script>
 
 <template>
@@ -60,11 +19,7 @@ onMounted(() => {
               </VCol>
 
               <VCol>
-                <VSelect
-                  label="Version"
-                  :items="metadata.releaseMinecraftVersions"
-                  :loading="loading.version"
-                />
+                <VSelect label="Version" />
               </VCol>
             </VRow>
 
@@ -96,7 +51,7 @@ onMounted(() => {
 
             <VRow>
               <VCol>
-                <VBtn color="primary" size="x-large" block @click="launch">
+                <VBtn color="primary" size="x-large" block>
                   Launch
                 </VBtn>
               </VCol>
@@ -105,7 +60,5 @@ onMounted(() => {
         </VCard>
       </VCol>
     </VRow>
-
-    <VSnackbar v-model="snackbar.show">{{ snackbar.text }}</VSnackbar>
   </VContainer>
 </template>

@@ -18,11 +18,11 @@ const config: ForgeConfig = {
     new VitePlugin({
       build: [
         {
-          entry: 'src/main.ts',
+          entry: 'src/main/main.ts',
           config: 'vite.main.config.ts',
         },
         {
-          entry: 'src/preload.ts',
+          entry: 'src/main/preload.ts',
           config: 'vite.preload.config.ts',
         },
       ],
