@@ -90,3 +90,8 @@ out/
 
 # Vite
 .vite/
+
+# Minecraft Gamefiles
+assets/
+libraries/
+gamefiles/
