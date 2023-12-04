@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import MinecraftLauncher from './components/minecraft/MinecraftLauncher.vue';
+import GameLauncher from './components/game/GameLauncher.vue';
 </script>
 
 <template>
   <VApp theme="dark">
     <VLayout>
       <VMain>
-        <MinecraftLauncher></MinecraftLauncher>
+        <GameLauncher></GameLauncher>
       </VMain>
     </VLayout>
   </VApp>

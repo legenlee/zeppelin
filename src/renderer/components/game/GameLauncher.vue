@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import ZeppelinWarning from '../zeppelin/ZeppelinWarning.vue';
 </script>
 
 <template>
@@ -15,7 +16,7 @@
 
             <VRow>
               <VCol>
-                <VTextField label="Name" disabled />
+                <VTextField label="Username" />
               </VCol>
 
               <VCol>
