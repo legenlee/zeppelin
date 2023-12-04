@@ -1,6 +1,7 @@
 import { IncomingMessage } from 'http';
 import https from 'https';
 import fs from 'fs';
+import Logger from '../logger';
 
 export const promisifiedHttps = {
   get: (url: string): Promise<IncomingMessage> => {
@@ -28,6 +29,7 @@ export const promisifiedHttps = {
           });
 
           file.on('error', (err) => {
+            Logger.error(err.message);
             fs.unlink(path, () => {
               reject();
             });
@@ -35,6 +37,7 @@ export const promisifiedHttps = {
           });
         })
         .on('error', (err) => {
+          Logger.error(err.message);
           reject(err);
         });
     });

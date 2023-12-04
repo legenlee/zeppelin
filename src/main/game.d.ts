@@ -70,6 +70,7 @@ type VersionDetail = {
     totalSize: number;
     url: string;
   };
+  assets: string;
   compilanceLevel: number;
   downloads: Downloads;
   id: string;
@@ -99,4 +100,8 @@ type Version = {
 type VersionManifest = {
   latest: Record<'release' | 'snapshot', string>;
   versions: Version[];
+};
+
+type AssetIndex = {
+  objects: Record<string, { hash: string; size: number }>;
 };
