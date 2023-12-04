@@ -16,21 +16,7 @@ import ZeppelinWarning from '../zeppelin/ZeppelinWarning.vue';
 
             <VRow>
               <VCol>
-                <VTextField label="Username" />
-              </VCol>
-
-              <VCol>
                 <VSelect label="Version" />
-              </VCol>
-            </VRow>
-
-            <VRow>
-              <VCol>
-                <VTextField label="Game directory">
-                  <template #append>
-                    <VBtn size="small" variant="text">Browse</VBtn>
-                  </template>
-                </VTextField>
               </VCol>
             </VRow>
 
