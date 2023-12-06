@@ -1,6 +1,6 @@
 import { constants } from './constants';
 
-export default class Logger {
+export class Logger {
   static log(message: string): void {
     console.log(`[${constants.common.appId}] ${message}`);
   }

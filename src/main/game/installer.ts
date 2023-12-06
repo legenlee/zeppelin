@@ -4,7 +4,7 @@ import fs from 'fs';
 import path from 'path';
 import { constants } from '../constants';
 import { promisifiedHttps } from '../utils/promisifiedHttps';
-import Logger from '../logger';
+import { Logger } from '../logger';
 
 const versionManifestPath = path.join(
   constants.common.gamefilesPath,
