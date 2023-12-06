@@ -1,7 +1,7 @@
 import { IncomingMessage } from 'http';
 import https from 'https';
 import fs from 'fs';
-import Logger from '../logger';
+import { Logger } from '../logger';
 
 export const promisifiedHttps = {
   get: (url: string): Promise<IncomingMessage> => {
