@@ -27,7 +27,7 @@ const installVersionManifest = async (): Promise<void> => {
 
 const installVersionDetail = async (version: string): Promise<string> => {
   const versionPath = path.join(constants.common.gamefilesPath, version);
-  const versionDetailPath = path.join(versionPath, 'version.json');
+  const versionDetailPath = path.join(versionPath, `${version}.json`);
 
   if (!fs.existsSync(versionPath)) {
     Logger.log(

@@ -1,6 +1,7 @@
 import { app, BrowserWindow } from 'electron';
 import path from 'path';
 import { install } from './game/installer';
+import { launch } from './game/launcher';
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) {
@@ -35,6 +36,10 @@ const createWindow = (): void => {
 // Some APIs can only be used after this event occurs.
 app.on('ready', async () => {
   createWindow();
+  launch(
+    '1.20.2',
+    '"C:\\Program Files\\Eclipse Adoptium\\jdk-17.0.2+8\\bin\\javaw.exe"',
+  );
 });
 
 // Quit when all windows are closed, except on macOS. There, it's common

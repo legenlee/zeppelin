@@ -1,12 +1,12 @@
-type GamefileArgumentRule = {
+type GameArgumentRule = {
   action: string;
   features: Record<string, boolean>;
 };
 
-type GamefileArgument =
+type GameArgument =
   | string
   | {
-      rules: GamefileArgumentRule[];
+      rules: GameArgumentRule[];
       value: string | string[];
     };
 
@@ -60,7 +60,7 @@ type Logging = Record<
 
 type VersionDetail = {
   arguments: {
-    game: string | GamefileArgument[];
+    game: string | GameArgument[];
     jvm: string | LibraryArgument[];
   };
   assetIndex: {
@@ -104,4 +104,11 @@ type VersionManifest = {
 
 type AssetIndex = {
   objects: Record<string, { hash: string; size: number }>;
+};
+
+type LaunchOptions = {
+  javaRuntimePath: string;
+  username: string;
+  width: number;
+  height: number;
 };
