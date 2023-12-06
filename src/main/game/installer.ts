@@ -15,7 +15,7 @@ const assetObjectsPath = path.join(constants.common.assetsPath, 'objects');
 
 const librariesPath = constants.common.librariesPath;
 
-const installVersionManifest = async () => {
+const installVersionManifest = async (): Promise<void> => {
   Logger.log('Installing version manifest...');
   if (!fs.existsSync(constants.common.gamefilesPath)) {
     fs.mkdirSync(constants.common.gamefilesPath);
